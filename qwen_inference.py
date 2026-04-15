@@ -34,7 +34,7 @@ def main(args, text_pipe, ckpt_id):
     profile_duration = args.profile_duration
     if args.profile:
         logger.info(f"starting profiler on port {profiler_port}")
-        _ = xp.start_server(profiler_port)
+        profiler_server = xp.start_server(profiler_port)
     device0 = xm.xla_device()
 
     logger.info(f"loading qwenimage from {ckpt_id}")
