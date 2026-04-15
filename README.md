@@ -64,3 +64,5 @@ This is a no-op on CPU/CUDA. PR is available [here](https://github.com/huggingfa
 | Inference (50 steps, steady state) | ~20 sec |
 
 Compiled graphs are cached at `/tmp/data/compiler_cache_tRiLlium_eXp` and reused across runs.
+
+Output image can be viewed [here](./inference_out.png).
