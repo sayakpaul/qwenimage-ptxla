@@ -205,3 +205,5 @@ Once you launch TensorBoard (`tensorboard --logdir /tmp/data/profiler_out_tRiLli
 | Inference (50 steps, steady state) | ~20 sec |
 
 Compiled graphs are cached at `/tmp/data/compiler_cache_tRiLlium_eXp` and reused across runs.
+
+Example output can be found [here](./inference_out.png).
