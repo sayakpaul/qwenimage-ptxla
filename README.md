@@ -1,7 +1,7 @@
 # QwenImage Inference on TPU with PyTorch/XLA
 
 Run [Qwen/Qwen-Image](https://huggingface.co/Qwen/Qwen-Image) inference on TPU v6e using PyTorch/XLA SPMD. We 
-take advantage of Diffusers' compatibility with PyTorch/XLA so the heavylifting of model implementation is
+take advantage of Diffusers' compatibility with PyTorch/XLA so, the heavy lifting of model implementation is
 already offloaded to it.
 
 ## Setup
@@ -27,7 +27,7 @@ python qwen_inference.py
 | `--profile` | off | Enable XLA profiler |
 | `--profile-duration` | 10000 | Profiling duration (ms) |
 
-## How it works
+## Implementation details
 
 ### SPMD sharding
 
