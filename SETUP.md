@@ -200,7 +200,15 @@ Then SSH in and re-mount (no formatting needed):
 ```bash
 sudo mkdir -p /mnt/data
 sudo mount -o discard,defaults /dev/nvme0n2 /mnt/data
+
+# Re-init conda
 eval "$(/mnt/data/miniconda3/bin/conda shell.bash hook)"
 conda init && source ~/.bashrc
 conda activate ptxla
+
+# Re-add env vars (new VM = fresh ~/.bashrc)
+echo 'export HF_HOME=/mnt/data/huggingface' >> ~/.bashrc
+echo 'export HUGGINGFACE_HUB_CACHE=/mnt/data/huggingface' >> ~/.bashrc
+echo 'export TMPDIR=/mnt/data/huggingface' >> ~/.bashrc
+source ~/.bashrc
 ```
