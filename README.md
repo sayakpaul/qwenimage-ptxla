@@ -31,7 +31,7 @@ python qwen_inference.py
 
 ### SPMD sharding
 
-The QwenImage DiT cannot fully fit on a single chip. That is why we need some kind of sharding. The script uses single-process SPMD instead of multi-process `xmp.spawn`. A 2D mesh `(num_devices // 4, 4)` is created with `("data", "model")` axes. Transformer parameters with `dim >= 2` are sharded along their largest dimension on the `"model"` axis. This follows the approach from [diffusers#13474](https://github.com/huggingface/diffusers/pull/13474/).
+The QwenImage DiT cannot fully fit on a single chip (`v6e-8`). That is why we need some kind of sharding. The script uses single-process SPMD instead of multi-process `xmp.spawn`. A 2D mesh `(num_devices // 4, 4)` is created with `("data", "model")` axes. Transformer parameters with `dim >= 2` are sharded along their largest dimension on the `"model"` axis. This follows the approach from [diffusers#13474](https://github.com/huggingface/diffusers/pull/13474/).
 
 Since there are model-level components in the QwenImage pipeline, we had to implement sharding. Other alternative
 was to do some kind of offloading between runs but that would have terribly slowed down execution.
