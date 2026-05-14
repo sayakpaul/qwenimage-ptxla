@@ -11,7 +11,7 @@ Behavior:
   (covers both `Fixes #N` keywords in the body and issues linked via the GitHub UI).
 - If a PR is not linked, posts up to 3 reminder comments spaced REMINDER_INTERVAL apart.
 - If the 3rd reminder is older than REMINDER_INTERVAL and the PR is still not linked, closes the PR.
-- PRs labeled `no-issue-needed` and bot-authored PRs are skipped.
+- PRs labeled `no-issues-needed` and bot-authored PRs are skipped.
 """
 
 import os
@@ -26,7 +26,7 @@ REMINDER_MARKER = "<!-- pr-link-issue-reminder -->"
 CLOSE_MARKER = "<!-- pr-link-issue-close -->"
 REMINDER_INTERVAL = timedelta(minutes=5)
 MAX_REMINDERS = 3
-BYPASS_LABELS = {"no-issue-needed"}
+BYPASS_LABELS = {"no-issues-needed"}
 
 GRAPHQL_URL = "https://api.github.com/graphql"
 GRAPHQL_QUERY = """
@@ -95,7 +95,7 @@ def reminder_body(author, count):
             f"This is the final reminder. If no linked issue is added within {window}, "
             "this PR will be closed automatically. "
             "If this PR intentionally does not fix a tracked issue, a maintainer "
-            "can add the `no-issue-needed` label to bypass this check."
+            "can add the `no-issues-needed` label to bypass this check."
         )
     return "\n".join(lines)
 
@@ -106,7 +106,7 @@ def close_body(author):
         f"Closing this PR because @{author} did not add a linked issue after "
         f"{MAX_REMINDERS} reminders spaced {_interval_label()} apart. "
         "Please reopen once the PR description references the issue it fixes "
-        "(e.g. `Fixes #1234`), or ask a maintainer to add the `no-issue-needed` "
+        "(e.g. `Fixes #1234`), or ask a maintainer to add the `no-issues-needed` "
         "label if this PR is intentionally unrelated to a tracked issue."
     )
 
